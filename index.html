@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pavlomir Doitchev — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#e6e6e6;
+      --panel:#444444;
+      --accent:#c7c2bf;
+      --text:#222;
+      --muted:#6b6b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text);}
+    .page{max-width:900px;margin:32px auto;padding:0;background:white;box-shadow:0 8px 30px rgba(0,0,0,0.12);display:grid;grid-template-columns:240px 1fr;min-height:1120px}
+
+    .header{grid-column:1 / -1;background:var(--panel);color:white;padding:36px 30px 28px;display:flex;justify-content:space-between;align-items:flex-start}
+    .name{font-size:34px;line-height:1;font-weight:700;letter-spacing:0.5px}
+    .contact{font-size:12px;text-align:right;opacity:0.95}
+    .contact a{color:inherit;text-decoration:none}
+
+    .left{background:#f4f4f4;padding:34px 22px;border-right:1px solid rgba(0,0,0,0.06)}
+    .section-title{font-size:11px;color:var(--muted);letter-spacing:1px;margin:6px 0 10px;font-weight:600}
+    .list{margin:6px 0 18px;padding-left:0}
+    .list p{margin:6px 0;font-size:13px}
+    .skill-badge{display:block;margin:6px 0;padding:6px 8px;background:white;border-radius:6px;font-size:13px}
+    .list-ul{margin:0;padding-left:18px}
+
+    .right{padding:34px 36px}
+    .summary{font-size:13px;line-height:1.45;color:#222;margin-bottom:18px}
+    h3{margin:18px 0 8px;font-size:14px}
+    .job{margin-bottom:12px}
+    .job .title{font-weight:600}
+    .job .meta{font-size:12px;color:var(--muted);margin-bottom:6px}
+    .job ul{margin:6px 0 10px 18px}
+    .small{font-size:12px;color:var(--muted)}
+
+    
+    .export-btn{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:#444;color:white;border:none;border-radius:6px;cursor:pointer;font-size:14px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
+    .export-btn:hover{background:#222}
+
+    @media print{
+      body{background:white}
+      .page{box-shadow:none;grid-template-columns:220px 1fr}
+      .export-btn{display:none}
+    }
+
+    @media (max-width:880px){
+      .page{grid-template-columns:1fr;min-height:unset}
+      .left{order:2;border-right:none;border-top:1px solid rgba(0,0,0,0.06)}
+      .header{flex-direction:column;gap:12px}
+      .contact{text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <button class="export-btn" onclick="downloadPDF()">Export as PDF</button>
+  <div class="page" role="document" id="cv-content">
+    <header class="header">
+      <div class="name">Pavlomir<br><strong>Doitchev</strong></div>
+      <div class="contact">
+        Sofia, Bulgaria<br>
+        +359 884 327 662<br>
+        <a href="mailto:pavlomirdoitchev@gmail.com">pavlomirdoitchev@gmail.com</a><br>
+        <a href="https://github.com/PavlomirDoitchev" target="_blank">github.com/PavlomirDoitchev</a>
+      </div>
+    </header>
+
+    <aside class="left" aria-label="Sidebar">
+      <div>
+        <div class="section-title">ACTIVITIES & INTERESTS</div>
+        <div class="list">
+          <p>Game Design</p>
+          <p>Web Development</p>
+          <p>Sound Design</p>
+          <p>Interactive Media</p>
+          <p>Music & Audio Tech</p>
+        </div>
+
+        <div class="section-title">KEY SKILLS</div>
+        <div class="list small">
+          <div class="list-ul">
+            <li>C#</li>
+            <li>Unity</li>
+            <li>ASP.NET</li>
+            <li>SQL Server</li>
+            <li>JavaScript, HTML, CSS</li>
+          </div>
+       
+          <div class="section-title">SOFT SKILLS</div>
+            <ul class="list-ul">
+                <li>Problem solving attitude</li>
+                <li>Adaptability to new technologies</li>
+                <li>Creative coding</li>
+                <li>Team collaboration skills</li>
+                <li>Communication</li>
+                <li>Attention to detail</li>
+            </ul>
+          <div class="section-title">LANGUAGES</div>
+            <ul class="list-ul">
+                <li>English (C1)</li>
+                <li>German (B2)</li>
+                <li>Bulgarian (Native)</li>
+            </ul>
+        </div>
+
+        <h3 class="section-title">CERTIFICATES</h3>
+        <div class="list small">
+          <ul class="list-ul">
+            <li>IELTS — C1</li>
+            <li>Österreichisches Sprachdiplom — German (B2)</li>
+            <li>Alorica — Best Performance Award</li>
+            <li>Udemy — GameDev & .NET Web courses</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="right" aria-label="Main content">
+      <section>
+        <p class="summary">Recent graduate in Software Engineering with C# from SoftUni, skilled in full-stack development, Unity game engine, and interactive technologies. Experienced in audio-visual and creative tech projects involving programming, sound design, and real-time interaction. Multilingual and adaptable, with strong teamwork skills and proven performance in both technical and customer service roles. Currently seeking a junior software development position to apply and grow programming expertise.</p>
+      </section>
+
+      <section>
+        <h2>Work Experience & Projects</h2>
+
+        <div class="job">
+          <div class="title">Sofia Puppet Theatre — AV Operator / Sound Engineer</div>
+          <div class="meta">Sofia, 2022 – 2024</div>
+          <ul>
+            <li>Operated and maintained AV systems during live shows and rehearsals.</li>
+            <li>Coordinated with creative and technical teams for seamless execution.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="title">Alorica — Customer Service Representative (Aer Lingus)</div>
+          <div class="meta">Sofia, 2024</div>
+          <ul>
+            <li>Delivered customer support in English for airline services.</li>
+            <li>Awarded Best Performance Certificate during training.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="title">"Technologika" (Plovdiv Puppet State Theatre) — Unity Developer & Sound Designer</div>
+          <div class="meta">2023 – 2025</div>
+          <ul>
+            <li>Programmed interactive experiences with LeapMotion.</li>
+            <li>Combined Unity scripting, sound design, and real-time visuals.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="title">"SpongeBob the Musical" (Sofia Puppet Theatre) — Sound Design & Video Mapping</div>
+          <div class="meta">2023</div>
+          <ul>
+            <li>Developed visual mapping in Resolume Arena for live performance.</li>
+            <li>Created and performed foley sounds for live performance.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="title">Sofia Opera — Sound Designer</div>
+          <div class="meta">2021</div>
+          <ul>
+            <li>Created and implemented virtual instruments for live performances.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="job">
+          <div class="title">British & Irish Modern Music Institute — Bachelor of Arts in Music Production</div>
+          <div class="meta">2018 – 2021</div>
+        </div>
+
+        <div class="job">
+          <div class="title">SoftUni — Software Engineering with C#</div>
+          <div class="meta">2024 – 2025</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    async function downloadPDF(){
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('p','pt','a4');
+      await doc.html(document.querySelector('#cv-content'), {
+        callback: function (doc) {
+          doc.save('Pavlomir_Doitchev_CV.pdf');
+        },
+        margin: [20,20,20,20],
+        autoPaging: 'text',
+        x:0,
+        y:0,
+        width:560
+      });
+    }
+  </script>
+</body>
+</html>
