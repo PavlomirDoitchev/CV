@@ -5,43 +5,189 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pavlomir Doitchev — CV</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     :root{
-      --bg:#e6e6e6;
-      --panel:#444444;
-      --accent:#c7c2bf;
+      --bg:#e6f0f8;
+      --panel:#1b1f3b;
+      --accent:#4a90e2;
       --text:#222;
-      --muted:#6b6b6b;
+      --muted:#555;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text);}
-    .page{max-width:900px;margin:32px auto;padding:0;background:white;box-shadow:0 8px 30px rgba(0,0,0,0.12);display:grid;grid-template-columns:240px 1fr;min-height:1120px}
+    
+    .page{
+      max-width:900px;
+      margin:32px auto;
+      padding:0;
+      background:white;
+      box-shadow:0 8px 30px rgba(0,0,0,0.12);
+      display:grid;
+      grid-template-columns:240px 1fr;
+      min-height:1120px;
+      border-radius:12px;
+      overflow:hidden;
+      position:relative;
+    }
 
-    .header{grid-column:1 / -1;background:var(--panel);color:white;padding:36px 30px 28px;display:flex;justify-content:space-between;align-items:flex-start}
-    .name{font-size:34px;line-height:1;font-weight:700;letter-spacing:0.5px}
-    .contact{font-size:12px;text-align:right;opacity:0.95}
+    /* Header */
+    .header{
+      grid-column:1 / -1;
+      background:linear-gradient(135deg, var(--panel), var(--accent));
+      color:white;
+      padding:36px 30px 28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      border-bottom:3px solid var(--accent);
+      position:relative;
+      overflow:hidden;
+    }
+    /* Accent top shapes */
+    .header::before{
+      content:"";
+      position:absolute;
+      top:0; left:0;
+      width:120px; height:120px;
+      background:rgba(255,255,255,0.1);
+      border-radius:50%;
+    }
+    .header::after{
+      content:"";
+      position:absolute;
+      top:-40px; right:-60px;
+      width:180px; height:180px;
+      background:rgba(255,255,255,0.08);
+      border-radius:50%;
+    }
+
+    .name{
+      font-size:34px;
+      line-height:1;
+      font-weight:700;
+      letter-spacing:0.5px;
+    }
+    .contact{
+      font-size:12px;
+      text-align:right;
+      opacity:0.95;
+    }
     .contact a{color:inherit;text-decoration:none}
+    .contact a.github{
+      display:inline-block;
+      margin-top:6px;
+      padding:4px 10px;
+      background:white;
+      color:var(--panel);
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:12px;
+    }
+    .contact a.github:hover{
+      background:var(--accent);
+      color:white;
+    }
 
-    .left{background:#f4f4f4;padding:34px 22px;border-right:1px solid rgba(0,0,0,0.06)}
-    .section-title{font-size:11px;color:var(--muted);letter-spacing:1px;margin:6px 0 10px;font-weight:600}
+    /* Left column */
+    .left{
+      background:#f5f9ff;
+      padding:34px 22px;
+      border-right:1px solid rgba(0,0,0,0.06);
+    }
+    .section-title{
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:1px;
+      margin:6px 0 10px;
+      font-weight:600;
+    }
     .list{margin:6px 0 18px;padding-left:0}
     .list p{margin:6px 0;font-size:13px}
-    .skill-badge{display:block;margin:6px 0;padding:6px 8px;background:white;border-radius:6px;font-size:13px}
+    .skill-badge{
+      display:block;
+      margin:6px 0;
+      padding:6px 8px;
+      background:white;
+      border-left:4px solid var(--accent);
+      border-radius:6px;
+      font-size:13px;
+    }
     .list-ul{margin:0;padding-left:18px}
 
+    /* Right column */
     .right{padding:34px 36px}
-    .summary{font-size:13px;line-height:1.45;color:#222;margin-bottom:18px}
-    h3{margin:18px 0 8px;font-size:14px}
+    .summary{font-size:16px;line-height:1.45;color:#222;margin-bottom:18px;border-left:3px solid var(--accent);padding-left:10px}
+    h2{margin:18px 0 8px;font-size:16px;color:var(--accent)}
     .job{margin-bottom:12px}
     .job .title{font-weight:600}
     .job .meta{font-size:12px;color:var(--muted);margin-bottom:6px}
     .job ul{margin:6px 0 10px 18px}
     .small{font-size:12px;color:var(--muted)}
+     .timeline{
+      position: relative;
+      margin-left:25px;
+      padding-left:50px;
+      border-left:2px solid var(--accent);
+    }
+    .timeline-item{
+      position: relative;
+      margin-bottom:12px;
+    }
+    .timeline-year{
+      position:absolute;
+      left:-110px;
+      top:0;
+      width:0px;
+      font-size:12px;
+      font-weight:600;
+      color:var(--accent);
+      text-align:right;
+    }
+    .timeline-content{
+      background:#f5f9ff;
+      padding:12px 16px;
+      border-radius:8px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    }
+    .timeline-content .title{
+      font-weight:600;
+      color:var(--panel);
+      margin-bottom:4px;
+    }
+    .timeline-content .meta{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .timeline-content ul{
+      margin:6px 0 0 18px;
+    }
+    /* Export button */
+    .export-btn{
+      position:fixed;bottom:20px;right:20px;padding:10px 16px;
+      background:var(--accent);
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:14px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+      z-index:10;
+    }
+    .export-btn:hover{background:#357acc}
 
-    
-    .export-btn{position:fixed;bottom:20px;right:20px;padding:10px 16px;background:#444;color:white;border:none;border-radius:6px;cursor:pointer;font-size:14px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
-    .export-btn:hover{background:#222}
+    /* Footer */
+    footer{
+      margin-top:32px;
+      padding:12px 0;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      border-top:1px solid #ddd;
+    }
 
     @media print{
       body{background:white}
@@ -58,7 +204,7 @@
   </style>
 </head>
 <body>
-  <button class="export-btn" onclick="downloadPDF()">Export as PDF</button>
+  <button class="export-btn">Export as PDF</button>
   <div class="page" role="document" id="cv-content">
     <header class="header">
       <div class="name">Pavlomir<br><strong>Doitchev</strong></div>
@@ -66,7 +212,7 @@
         Sofia, Bulgaria<br>
         +359 884 327 662<br>
         <a href="mailto:pavlomirdoitchev@gmail.com">pavlomirdoitchev@gmail.com</a><br>
-        <a href="https://github.com/PavlomirDoitchev" target="_blank">github.com/PavlomirDoitchev</a>
+        <a href="https://github.com/PavlomirDoitchev" target="_blank" class="github">github.com/PavlomirDoitchev</a>
       </div>
     </header>
 
@@ -83,32 +229,33 @@
 
         <div class="section-title">KEY SKILLS</div>
         <div class="list small">
-          <div class="list-ul">
+          <ul class="list-ul">
             <li>C#</li>
             <li>Unity</li>
             <li>ASP.NET</li>
             <li>SQL Server</li>
             <li>JavaScript, HTML, CSS</li>
-          </div>
-       
+          </ul>
+
           <div class="section-title">SOFT SKILLS</div>
-            <ul class="list-ul">
-                <li>Problem solving attitude</li>
-                <li>Adaptability to new technologies</li>
-                <li>Creative coding</li>
-                <li>Team collaboration skills</li>
-                <li>Communication</li>
-                <li>Attention to detail</li>
-            </ul>
+          <ul class="list-ul">
+            <li>Problem solving attitude</li>
+            <li>Adaptability to new technologies</li>
+            <li>Creative coding</li>
+            <li>Team collaboration skills</li>
+            <li>Communication</li>
+            <li>Attention to detail</li>
+          </ul>
+
           <div class="section-title">LANGUAGES</div>
-            <ul class="list-ul">
-                <li>English (C1)</li>
-                <li>German (B2)</li>
-                <li>Bulgarian (Native)</li>
-            </ul>
+          <ul class="list-ul">
+            <li>English (C1)</li>
+            <li>German (B2)</li>
+            <li>Bulgarian (Native)</li>
+          </ul>
         </div>
 
-        <h3 class="section-title">CERTIFICATES</h3>
+        <div class="section-title">CERTIFICATES</div>
         <div class="list small">
           <ul class="list-ul">
             <li>IELTS — C1</li>
@@ -126,52 +273,65 @@
       </section>
 
       <section>
-        <h2>Work Experience & Projects</h2>
+  <h2>Work Experience & Projects</h2>
+  
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2023 – 2025</div>
+      <div class="timeline-content">
+        <div class="title">"Art Laboratory" (Plovdiv Puppet State Theatre) — Unity Developer & Sound Designer</div>
+        <div class="meta"></div>
+        <ul>
+          <li>Programmed interactive experiences with LeapMotion.</li>
+          <li>Combined Unity scripting, sound design, and real-time visuals.</li>
+        </ul>
+      </div>
+    </div>
+     <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-content">
+        <div class="title">Alorica — Customer Service Representative (Aer Lingus)</div>
+        <div class="meta">Sofia</div>
+        <ul>
+          <li>Delivered customer support in English for airline services.</li>
+          <li>Awarded Best Performance Certificate during training.</li>
+        </ul>
+      </div>
+    </div>
+      <div class="timeline-item">
+      <div class="timeline-year">2023</div>
+      <div class="timeline-content">
+        <div class="title">"SpongeBob the Musical" (Sofia Puppet Theatre) — Sound Design & Video Mapping</div>
+        <ul>
+          <li>Developed visual mapping in Resolume Arena for live performance.</li>
+          <li>Created and performed foley sounds for live performance.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2022 – 2024</div>
+      <div class="timeline-content">
+        <div class="title">Sofia Puppet Theatre — AV Operator / Sound Engineer</div>
+        <div class="meta">Sofia</div>
+        <ul>
+          <li>Operated and maintained AV systems during live shows and rehearsals.</li>
+          <li>Coordinated with creative and technical teams for seamless execution.</li>
+        </ul>
+      </div>
+    </div>
 
-        <div class="job">
-          <div class="title">Sofia Puppet Theatre — AV Operator / Sound Engineer</div>
-          <div class="meta">Sofia, 2022 – 2024</div>
-          <ul>
-            <li>Operated and maintained AV systems during live shows and rehearsals.</li>
-            <li>Coordinated with creative and technical teams for seamless execution.</li>
-          </ul>
-        </div>
+  
 
-        <div class="job">
-          <div class="title">Alorica — Customer Service Representative (Aer Lingus)</div>
-          <div class="meta">Sofia, 2024</div>
-          <ul>
-            <li>Delivered customer support in English for airline services.</li>
-            <li>Awarded Best Performance Certificate during training.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="title">"Technologika" (Plovdiv Puppet State Theatre) — Unity Developer & Sound Designer</div>
-          <div class="meta">2023 – 2025</div>
-          <ul>
-            <li>Programmed interactive experiences with LeapMotion.</li>
-            <li>Combined Unity scripting, sound design, and real-time visuals.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="title">"SpongeBob the Musical" (Sofia Puppet Theatre) — Sound Design & Video Mapping</div>
-          <div class="meta">2023</div>
-          <ul>
-            <li>Developed visual mapping in Resolume Arena for live performance.</li>
-            <li>Created and performed foley sounds for live performance.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="title">Sofia Opera — Sound Designer</div>
-          <div class="meta">2021</div>
-          <ul>
-            <li>Created and implemented virtual instruments for live performances.</li>
-          </ul>
-        </div>
-      </section>
+    <div class="timeline-item">
+      <div class="timeline-year">2021</div>
+      <div class="timeline-content">
+        <div class="title">Sofia Opera — Sound Designer</div>
+        <ul>
+          <li>Created and implemented virtual instruments for live performances.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
       <section>
         <h2>Education</h2>
@@ -179,31 +339,36 @@
           <div class="title">British & Irish Modern Music Institute — Bachelor of Arts in Music Production</div>
           <div class="meta">2018 – 2021</div>
         </div>
-
         <div class="job">
           <div class="title">SoftUni — Software Engineering with C#</div>
           <div class="meta">2024 – 2025</div>
         </div>
       </section>
 
+      <footer>
+        © 2025 Pavlomir Doitchev
+      </footer>
     </main>
   </div>
 
   <script>
-    async function downloadPDF(){
+  window.onload = () => {
+    document.querySelector('.export-btn').addEventListener('click', async () => {
       const { jsPDF } = window.jspdf;
-      const doc = new jsPDF('p','pt','a4');
-      await doc.html(document.querySelector('#cv-content'), {
-        callback: function (doc) {
-          doc.save('Pavlomir_Doitchev_CV.pdf');
-        },
-        margin: [20,20,20,20],
-        autoPaging: 'text',
-        x:0,
-        y:0,
-        width:560
-      });
-    }
+      const doc = new jsPDF('p', 'pt', 'a4');
+
+      const cvElement = document.querySelector('#cv-content');
+
+      const canvas = await html2canvas(cvElement, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      doc.save('Pavlomir_Doitchev_CV.pdf');
+    });
+  };
   </script>
 </body>
 </html>
