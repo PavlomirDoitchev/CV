@@ -89,7 +89,6 @@
       color:white;
     }
 
-    /* Left column */
     .left{
       background:#f5f9ff;
       padding:34px 22px;
@@ -113,10 +112,10 @@
       border-radius:6px;
       font-size:13px;
     }
-    .list-ul{margin:0;padding-left:18px}
+    .list-ul{margin:.5rem 0;padding-left:18px}
 
     .right{padding:34px 36px}
-    .summary{font-size:16px;line-height:1.45;color:#222;margin-bottom:18px;border-left:3px solid var(--accent);padding-left:10px}
+    .summary{font-size:14px;line-height:1.45;color:#222;margin-bottom:18px;}
     h2{margin:18px 0 8px;font-size:16px;color:var(--accent)}
     .job{margin-bottom:12px}
     .job .title{font-weight:600}
@@ -161,8 +160,10 @@
     }
     .timeline-content ul{
       margin:6px 0 0 18px;
+      font-size:13px;
     }
-    /* Export button */
+
+
     .export-btn{
       position:fixed;bottom:20px;right:20px;padding:10px 16px;
       background:var(--accent);
@@ -175,15 +176,6 @@
       z-index:10;
     }
     .export-btn:hover{background:#357acc}
-
-    footer{
-      margin-top:32px;
-      padding:12px 0;
-      text-align:center;
-      font-size:12px;
-      color:var(--muted);
-      border-top:1px solid #ddd;
-    }
 
     @media print{
       body{background:white}
@@ -213,17 +205,7 @@
     </header>
 
     <aside class="left" aria-label="Sidebar">
-      <div>
-        <div class="section-title">ACTIVITIES & INTERESTS</div>
-        <div class="list">
-          <p>Game Design</p>
-          <p>Web Development</p>
-          <p>Sound Design</p>
-          <p>Interactive Media</p>
-          <p>Music & Audio Tech</p>
-        </div>
-
-        <div class="section-title">KEY SKILLS</div>
+      <div class="section-title">KEY SKILLS</div>
         <div class="list small">
           <ul class="list-ul">
             <li>C#</li>
@@ -233,7 +215,7 @@
             <li>JavaScript, HTML, CSS</li>
           </ul>
 
-          <div class="section-title">SOFT SKILLS</div>
+      <div class="section-title">SOFT SKILLS</div>
           <ul class="list-ul">
             <li>Problem solving attitude</li>
             <li>Adaptability to new technologies</li>
@@ -242,6 +224,17 @@
             <li>Communication</li>
             <li>Attention to detail</li>
           </ul>
+      <div>
+        <div class="section-title">ACTIVITIES & INTERESTS</div>
+          <div class="list small">
+          <ul class="list-ul">
+            <li>Game Design</li>
+            <li>Web Development</li>
+            <li>Sound Design</li>
+            <li>Interactive Media</li>
+            <li>Music & Audio Tech</li>
+          </ul>
+        </div>
 
           <div class="section-title">LANGUAGES</div>
           <ul class="list-ul">
@@ -265,16 +258,25 @@
 
     <main class="right" aria-label="Main content">
       <section>
-        <p class="summary">Recent graduate in Software Engineering with C# from SoftUni, skilled in full-stack development, Unity game engine, and interactive technologies. Experienced in audio-visual and creative tech projects involving programming, sound design, and real-time interaction. Multilingual and adaptable, with strong teamwork skills and proven performance in both technical and customer service roles. Currently seeking a junior software development position to apply and grow programming expertise.</p>
+        <h2>Summary</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+            <p class="summary">Recent graduate in <strong>Software Engineering with C# from SoftUni</strong>, passionate about web development, Unity game engine, and interactive technologies. Experienced in audio-visual and creative tech projects involving programming, sound design, and real-time interaction. Multilingual and adaptable, with strong teamwork skills and proven performance in both technical and customer service roles. Currently seeking a junior software development position to apply and grow programming expertise.</p>
+            </div>
+            </div>
+          </div>
       </section>
 
       <section>
       
           <h2>Education</h2>
           <div class="timeline">
+            <div class="timeline-item">
           <div class="timeline-content">
             <div class="title">SoftUni — Software Engineering with C#</div>
             <div class="meta">2024 – 2025</div>
+            </div>  
           </div>
           <div class="timeline-content">
             <div class="title">British & Irish Modern Music Institute — Bachelor of Arts in Music Production</div>
@@ -292,7 +294,7 @@
       <div class="timeline-year">2023 – 2025</div>
       <div class="timeline-content">
         <div class="title">"Art Laboratory" (Plovdiv Puppet State Theatre) — Unity Developer & Sound Designer</div>
-        <div class="meta"></div>
+        <div class="meta">Project</div>
         <ul>
           <li>Programmed interactive experiences with LeapMotion.</li>
           <li>Combined Unity scripting, sound design, and real-time visuals.</li>
@@ -314,6 +316,7 @@
       <div class="timeline-year">2023</div>
       <div class="timeline-content">
         <div class="title">"SpongeBob the Musical" (Sofia Puppet Theatre) — Sound Design & Video Mapping</div>
+        <div class="meta">Project</div>
         <ul>
           <li>Developed visual mapping in Resolume Arena for live performance.</li>
           <li>Created and performed foley sounds for live performance.</li>
@@ -332,26 +335,20 @@
       </div>
     </div>
 
-  
-
+<!-- 
     <div class="timeline-item">
       <div class="timeline-year">2021</div>
       <div class="timeline-content">
         <div class="title">Sofia Opera — Sound Designer</div>
+        <div class="meta">Project</div>
         <ul>
           <li>Created and implemented virtual instruments for live performances.</li>
         </ul>
       </div>
     </div>
   </div>
-
-      
-
-      <footer>
-        © 2025
-      </footer>
     </main>
-  </div>
+  </div> -->
 
   <script>
   window.onload = () => {
